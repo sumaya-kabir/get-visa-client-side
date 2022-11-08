@@ -12,7 +12,6 @@ const Header = () => {
   <Navbar.Brand href="/">
     <img
       src={logo}
-      className="h-9 sm:h-9"
       alt="Get Visa Logo"
     />
     <span className="self-center whitespace-nowrap text-2xl font-bold dark:text-white">
