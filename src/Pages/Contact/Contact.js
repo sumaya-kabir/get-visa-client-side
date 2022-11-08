@@ -1,13 +1,13 @@
 import React from 'react';
 import useTitle from '../../hooks/useTitle';
 
-const About = () => {
-    useTitle('About')
+const Contact = () => {
+    useTitle('Contact')
     return (
         <div>
-            About our activities
+            Contact Us
         </div>
     );
 };
 
-export default About;
+export default Contact;

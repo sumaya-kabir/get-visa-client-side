@@ -1,6 +1,7 @@
 import { Footer } from 'flowbite-react';
 import React from 'react';
 import logo from '../../../assets/logo/logo (1).png';
+import { FaGoogle, FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaBehance, FaDribbble } from "react-icons/fa";
 
 const PageFooter = () => {
     return (
@@ -59,7 +60,13 @@ const PageFooter = () => {
                         year={2022}
                     />
                     <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-                        
+                    <FaGoogle className='mr-2'></FaGoogle>
+                    <FaFacebook className='mr-2'></FaFacebook>
+                    <FaTwitter className='mr-2'></FaTwitter>
+                    <FaLinkedin className='mr-2'></FaLinkedin>
+                    <FaInstagram className='mr-2'></FaInstagram>
+                    <FaBehance className='mr-2'></FaBehance>
+                    <FaDribbble className='mr-2'></FaDribbble>
                     </div>
                 </div>
             </div>

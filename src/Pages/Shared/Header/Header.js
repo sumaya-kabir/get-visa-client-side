@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Navbar } from 'flowbite-react';
 import logo from '../../../assets/logo/logo (1).png';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -21,22 +22,21 @@ const Header = () => {
   
   <Navbar.Collapse>
     <Navbar.Link
-      href="/navbars"
       active={true}
     >
-      Home
+      <Link to='/'>Home</Link>
     </Navbar.Link>
-    <Navbar.Link href="/navbars">
-      About
+    <Navbar.Link>
+    <Link to='/about'>About</Link>
     </Navbar.Link>
-    <Navbar.Link href="/navbars">
-      Services
+    <Navbar.Link>
+    <Link to='/services'>Services</Link>
     </Navbar.Link>
-    <Navbar.Link href="/navbars">
-      Pricing
+    <Navbar.Link>
+    <Link to='/login'>Login</Link>
     </Navbar.Link>
-    <Navbar.Link href="/navbars">
-      Contact
+    <Navbar.Link>
+    <Link to='/contact'>Contact</Link>
     </Navbar.Link>
   </Navbar.Collapse>
   <div className="flex md:order-2">
