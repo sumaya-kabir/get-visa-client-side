@@ -21,23 +21,24 @@ const Header = () => {
   </Navbar.Brand>
   
   <Navbar.Collapse>
-    <Navbar.Link
-      active={true}
-    >
+    <Navbar className='hover:bg-orange-300 rounded-lg'>
       <Link to='/'>Home</Link>
-    </Navbar.Link>
-    <Navbar.Link>
+    </Navbar>
+    <Navbar className='hover:bg-orange-300 rounded-lg'>
     <Link to='/about'>About</Link>
-    </Navbar.Link>
-    <Navbar.Link>
+    </Navbar>
+    <Navbar className='hover:bg-orange-300 rounded-lg'>
     <Link to='/services'>Services</Link>
-    </Navbar.Link>
-    <Navbar.Link>
+    </Navbar>
+    <Navbar className='hover:bg-orange-300 rounded-lg'>
+    <Link to='/blog'>Blog</Link>
+    </Navbar>
+    <Navbar className='hover:bg-orange-300 rounded-lg'>
     <Link to='/login'>Login</Link>
-    </Navbar.Link>
-    <Navbar.Link>
+    </Navbar>
+    <Navbar className='hover:bg-orange-300 rounded-lg'>
     <Link to='/contact'>Contact</Link>
-    </Navbar.Link>
+    </Navbar>
   </Navbar.Collapse>
   <div className="flex md:order-2">
     <Button gradientDuoTone="pinkToOrange">

@@ -5,7 +5,7 @@ import { FaGoogle, FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaBehance, Fa
 
 const PageFooter = () => {
     return (
-        <Footer container={true}>
+        <Footer className='bg-orange-300' container={true}>
             <div className="w-full">
                 <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
                     <div>
