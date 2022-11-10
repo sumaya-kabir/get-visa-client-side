@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Label, Select, TextInput } from 'flowbite-react';
+import { Button, Checkbox, Label, Select, TextInput } from 'flowbite-react';
 import React from 'react';
 
 const CallToAction = () => {
