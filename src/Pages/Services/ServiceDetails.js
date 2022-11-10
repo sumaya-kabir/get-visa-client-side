@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import Reviews from '../Reviews/Reviews';
+import AddReviews from '../Reviews/AddReviews';
 
 const ServiceDetails = () => {
     const { title, picture, description, price, reviews } = useLoaderData();
@@ -35,6 +36,7 @@ const ServiceDetails = () => {
                         </div>
                     </Card>
                 </div>
+                <AddReviews></AddReviews>
             </div>
         </div>
     );

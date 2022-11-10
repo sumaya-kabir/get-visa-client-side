@@ -1,15 +1,48 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import useTitle from '../../hooks/useTitle';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
     useTitle('Login')
+    const {signIn} = useContext(AuthContext);
+    const {googleSignIn} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || "/";
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signIn(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            navigate(from, {replace: true});
+        })
+        .catch(err => console.error(err))
+    }
+    
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            // setAuthToken(user)
+
+        })
+        .catch(err => console.error(err))
+    }
     return (
         <div className=' py-10'>
             <h2 className='text-4xl text-center'>Login Here</h2>
-            <form className="mx-12 md:mx-auto md:w-1/2 flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="mx-12 md:mx-auto md:w-1/2 flex flex-col gap-4">
                 <div>
                     <div className="mb-2 block">
                         <Label
@@ -20,6 +53,7 @@ const Login = () => {
                     <TextInput
                         id="email1"
                         type="email"
+                        name="email"
                         placeholder="name@getvisa.com"
                         required={true}
                     />
@@ -34,6 +68,7 @@ const Login = () => {
                     <TextInput
                         id="password1"
                         type="password"
+                        name="password"
                         required={true}
                     />
                 </div>
@@ -46,7 +81,7 @@ const Login = () => {
                 <Button gradientDuoTone="pinkToOrange" type="submit">
                     Login
                 </Button>
-                <Button color='light'>
+                <Button onClick={handleGoogleSignIn} color='light'>
                     <FaGoogle className='mr-2'></FaGoogle>Google
                 </Button>
             </form>

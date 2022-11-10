@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Navbar } from 'flowbite-react';
 import logo from '../../../assets/logo/logo (1).png';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Header = () => {
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleLogout = () =>{
+    logOut()
+    .then()
+    .catch(error => console.log(error))
+}
+
     return (
         <div>
             <Navbar
@@ -33,9 +42,24 @@ const Header = () => {
     <Navbar className='hover:bg-orange-300 rounded-lg'>
     <Link to='/blog'>Blog</Link>
     </Navbar>
-    <Navbar className='hover:bg-orange-300 rounded-lg'>
-    <Link to='/login'>Login</Link>
-    </Navbar>
+    {
+      user?.uid ? 
+      <>
+        <Navbar className='hover:bg-orange-300 rounded-lg'>
+        <Link to='/addservices'>Add Services</Link>
+        </Navbar>
+        <Navbar className='hover:bg-orange-300 rounded-lg'>
+        <Link to='/myreviews'>My Reviews</Link>
+        </Navbar>
+        <Navbar className='hover:bg-orange-300 rounded-lg'>
+        <Link onClick={handleLogout}>Logout</Link>
+        </Navbar>
+      </>
+      :
+      <Navbar className='hover:bg-orange-300 rounded-lg'>
+      <Link to='/login'>Login</Link>
+      </Navbar>
+    }
     <Navbar className='hover:bg-orange-300 rounded-lg'>
     <Link to='/contact'>Contact</Link>
     </Navbar>
