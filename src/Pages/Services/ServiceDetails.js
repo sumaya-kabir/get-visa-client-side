@@ -28,11 +28,11 @@ const ServiceDetails = () => {
                 <div className="">
                     <Card className='m-6'>
                         <div>
-                            {
+                            {/* {
                                 reviews.map(review => <Reviews
                                 review={review}
                                 ></Reviews>)
-                            }
+                            } */}
                         </div>
                     </Card>
                 </div>

@@ -1,13 +1,13 @@
 import { Table } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
 
-const ReviewRow = ({review, handleDelete}) => {
+const ReviewRow = ({review, handleDelete, handleStatusUpdate}) => {
     const {_id, serviceId, serviceName, reviewText} = review;
     const [reviewService, setReviewService] = useState({});
 
 
     useEffect( () => {
-        fetch(`http://localhost:5000/services/${serviceId}`)
+        fetch(`https://getvisa-server.vercel.app/services/${serviceId}`)
         .then(res => res.json())
         .then( data => setReviewService(data))
     }, [serviceId])
@@ -25,12 +25,12 @@ const ReviewRow = ({review, handleDelete}) => {
                         </Table.Cell>
                         
                         <Table.Cell>
-                            <a
-                                href="/tables"
-                                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                            <button
+                                onClick={handleStatusUpdate}
+                                className="font-medium text-orange-500 hover:underline dark:text-blue-500"
                             >
                                 Edit
-                            </a>
+                            </button>
                         </Table.Cell>
                     </Table.Row>
        

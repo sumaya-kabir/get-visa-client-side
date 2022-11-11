@@ -23,7 +23,7 @@ const ServiceCard = ({ service }) => {
                         {title}
                     </h5>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                        {description.slice(0, 50)}...
+                        {description}...
                     </p>
                     <div>
                     <Link to={`/services/${_id}`}>

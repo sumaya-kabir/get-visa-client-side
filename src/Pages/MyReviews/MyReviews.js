@@ -10,7 +10,7 @@ const MyReviews = () => {
     const [reviews, setreviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+        fetch(`https://getvisa-server.vercel.app/reviews?email=${user?.email}`, {
             // headers: {
             //     authorization: `Bearer ${localStorage.getItem('')}`
             // }
@@ -29,7 +29,7 @@ const MyReviews = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure to delete this review?')
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://getvisa-server.vercel.app/reviews/${id}`, {
                 method: 'DELETE',
                 // headers: {
                 //     authorization: `Bearer ${localStorage.getItem('')}`
@@ -47,28 +47,28 @@ const MyReviews = () => {
         }
     }
 
-    // const handleStatusUpdate = id => {
-    //     fetch(`http://localhost:5000/reviews/${id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'content-type': 'application/json',
-    //             authorization: `Bearer ${localStorage.getItem('')}`
-    //         },
-    //         body: JSON.stringify({status: 'Approved'})
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data);
-    //         if(data.modifiedCount > 0){
-    //             const remaining = reviews.filter(rv => rv._id !== id);
-    //             const approved = reviews.find(rv => rv._id === id);
-    //             approved.status = "Approved";
+    const handleStatusUpdate = id => {
+        fetch(`https://getvisa-server.vercel.app/reviews/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                // authorization: `Bearer ${localStorage.getItem('')}`
+            },
+            body: JSON.stringify({status: 'Approved'})
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.modifiedCount > 0){
+                const remaining = reviews.filter(rv => rv._id !== id);
+                const approved = reviews.find(rv => rv._id === id);
+                approved.status = "Approved";
 
-    //             const newreview = [approved, ...remaining];
-    //             setreviews(newreview);
-    //         }
-    //     })
-    // }
+                const newreview = [approved, ...remaining];
+                setreviews(newreview);
+            }
+        })
+    }
     return (
         <div>
             <Table hoverable={true}>
@@ -96,6 +96,7 @@ const MyReviews = () => {
                         key={review._id}
                         review={review}
                         handleDelete={handleDelete}
+                        handleStatusUpdate={handleStatusUpdate}
                         ></ReviewRow>)
                     }
                 </Table.Body>
