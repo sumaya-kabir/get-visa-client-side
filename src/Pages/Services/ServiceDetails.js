@@ -1,13 +1,13 @@
 import { Card } from 'flowbite-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-import Reviews from '../Reviews/Reviews';
 import AddReviews from '../Reviews/AddReviews';
+import AllReviews from '../Reviews/AllReviews';
 
 const ServiceDetails = () => {
-    const { title, picture, description, price, reviews } = useLoaderData();
+    const { title, picture, description, price } = useLoaderData();
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2'>
             <div className='m-6'>
@@ -27,13 +27,16 @@ const ServiceDetails = () => {
 
                 <div className="">
                     <Card className='m-6'>
-                        <div>
+                        <AllReviews></AllReviews>
                             {/* {
-                                reviews.map(review => <Reviews
+                                reviews?
+                                reviews?.map(review => <Reviews
                                 review={review}
                                 ></Reviews>)
+                                :
+                                <p className='text-xl'>"No Reviews Found For This Service"</p>
                             } */}
-                        </div>
+                        
                     </Card>
                 </div>
                 <AddReviews></AddReviews>

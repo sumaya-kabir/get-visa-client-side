@@ -8,6 +8,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import MyReviews from "../Pages/MyReviews/MyReviews";
 import AddReviews from "../Pages/Reviews/AddReviews";
+import AllReviews from "../Pages/Reviews/AllReviews";
 import ServiceDetails from "../Pages/Services/ServiceDetails";
 import Services from "../Pages/Services/Services";
 import SignUp from "../Pages/SignUp/SignUp";
@@ -42,9 +43,14 @@ export const router = createBrowserRouter([
                 element: <Blog></Blog>
             },
             {
-                path: '/reviews/:id',
+                path: '/addreviews/:id',
                 element: <PrivateRoutes><AddReviews></AddReviews></PrivateRoutes>,
                 loader: ({params}) => fetch(`https://getvisa-server.vercel.app/services/${params.id}`)
+              },
+              {
+                path: '/serviceReviews/:id',
+                element: <AllReviews></AllReviews>,
+                loader: ({params}) => fetch(`https://getvisa-server.vercel.app/reviews${params.id}`)
               },
             {
                 path: '/myreviews',
