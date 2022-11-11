@@ -28,14 +28,6 @@ const ServiceDetails = () => {
                 <div className="">
                     <Card className='m-6'>
                         <AllReviews></AllReviews>
-                            {/* {
-                                reviews?
-                                reviews?.map(review => <Reviews
-                                review={review}
-                                ></Reviews>)
-                                :
-                                <p className='text-xl'>"No Reviews Found For This Service"</p>
-                            } */}
                         
                     </Card>
                 </div>

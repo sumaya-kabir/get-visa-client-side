@@ -12,11 +12,14 @@ const AllReviews = () => {
 
     return (
         <div>
-            {
-                            reviews.map(review => <Reviews
+            { 
+                        reviews ?
+                            reviews?.map(review => <Reviews
                             key={review._id}
                             review={review}
                             ></Reviews>)
+                            : 
+                            <p className='text-xl'>"No Reviews Found For This Service"</p>
                         }
         </div>
     );
