@@ -29,7 +29,7 @@ const MyReviews = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure to delete this review?')
         if (proceed) {
-            fetch(`https://getvisa-server.vercel.app/reviews/${id}`, {
+            fetch(`https://getvisa-server.vercel.app/myreviews/${id}`, {
                 method: 'DELETE',
                 // headers: {
                 //     authorization: `Bearer ${localStorage.getItem('')}`
@@ -48,7 +48,7 @@ const MyReviews = () => {
     }
 
     const handleStatusUpdate = id => {
-        fetch(`https://getvisa-server.vercel.app/reviews/${id}`, {
+        fetch(`https://getvisa-server.vercel.app/myreviews/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

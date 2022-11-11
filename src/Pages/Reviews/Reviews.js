@@ -3,7 +3,7 @@ import React from 'react';
 
 const Reviews = ({review}) => {
     const {img, name, reviewText, ratings} = review; 
-    console.log(review);
+    
     return (
         <div className='flex'>
                             <img className='h-12 w-12 mr-5 rounded-full' src={img} alt="" />

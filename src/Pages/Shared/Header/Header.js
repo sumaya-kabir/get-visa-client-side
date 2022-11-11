@@ -49,7 +49,7 @@ const Header = () => {
         <Link to='/addservices'>Add Services</Link>
         </Navbar>
         <Navbar className='hover:bg-orange-300 rounded-lg'>
-        <Link to='/myreviews'>My Reviews</Link>
+        <Link to='/myReviews'>My Reviews</Link>
         </Navbar>
         <Navbar className='hover:bg-orange-300 rounded-lg'>
         <Link onClick={handleLogout}>Logout</Link>

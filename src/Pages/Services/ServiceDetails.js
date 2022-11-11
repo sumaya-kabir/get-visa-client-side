@@ -1,5 +1,5 @@
 import { Card } from 'flowbite-react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
