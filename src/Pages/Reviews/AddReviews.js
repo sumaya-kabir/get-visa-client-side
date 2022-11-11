@@ -20,7 +20,7 @@ const AddReviews = () => {
             reviewText
         }
 
-        fetch('https://getvisa-server.vercel.app/reviews', {
+        fetch('https://getvisa-server.vercel.app/myreviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
