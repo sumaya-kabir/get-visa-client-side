@@ -23,7 +23,7 @@ const AddReviews = () => {
             date
         }
 
-        fetch('http://localhost:5000/myreviews', {
+        fetch('https://getvisa-server.vercel.app/myreviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

@@ -22,7 +22,7 @@ const Update = () => {
     const handleStatusUpdate = event => {
         event.preventDefault();
         console.log(review)
-        fetch(`http://localhost:5000/myreviews/${oneReview._id}`, {
+        fetch(`https://getvisa-server.vercel.app/myreviews/${oneReview._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

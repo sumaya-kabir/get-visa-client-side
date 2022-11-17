@@ -10,7 +10,7 @@ const MyReviews = () => {
     const [reviews, setreviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews?email=${user?.email}`,{
+        fetch(`https://getvisa-server.vercel.app/myreviews?email=${user?.email}`,{
             authorization: `Bearer ${localStorage.getItem('getvisa-token')}`
         })
             .then(res => {
@@ -24,7 +24,7 @@ const MyReviews = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure to delete this review?')
         if (proceed) {
-            fetch(`http://localhost:5000/myreviews/${id}`,
+            fetch(`https://getvisa-server.vercel.app/myreviews/${id}`,
             {
                 method: 'DELETE',
                 headers: {
