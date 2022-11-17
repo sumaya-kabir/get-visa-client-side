@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button, Label, TextInput } from 'flowbite-react';
+import { Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import useTitle from '../../hooks/useTitle';
@@ -9,6 +9,14 @@ const SignUp = () => {
     useTitle('SignUp');
     const {createNewUser} = useContext(AuthContext);
     const {googleSignIn} = useContext(AuthContext);
+    const {loading} = useContext(AuthContext);
+
+
+    if(loading) {
+        return <div className="text-center">
+        <Spinner size="xl" aria-label="Center-aligned spinner example" />
+      </div>
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();

@@ -4,7 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const AddReviews = () => {
-    const {_id, title} = useLoaderData();
+    const { _id, title } = useLoaderData();
     const { user } = useContext(AuthContext);
 
     const handleReviewField = (event) => {
@@ -12,30 +12,33 @@ const AddReviews = () => {
         const form = event.target;
         const email = user?.email || 'Unregistered';
         const reviewText = form.reviewText.value;
+        const current = new Date();
+        const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
 
         const review = {
             serviceId: _id,
             serviceName: title,
             email,
-            reviewText
+            reviewText,
+            date
         }
 
-        fetch('https://getvisa-server.vercel.app/myreviews', {
+        fetch('http://localhost:5000/myreviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
             body: JSON.stringify(review)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.acknowledged){
-                alert('Review added successfully')
-                form.reset()
-            }
-        })
-        .catch(err => console.error(err))
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    alert('Review added successfully')
+                    form.reset()
+                }
+            })
+            .catch(err => console.error(err))
 
     }
 

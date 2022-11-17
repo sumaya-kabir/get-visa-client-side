@@ -10,15 +10,10 @@ const MyReviews = () => {
     const [reviews, setreviews] = useState([]);
 
     useEffect(() => {
-        fetch(`https://getvisa-server.vercel.app/reviews?email=${user?.email}`, {
-            // headers: {
-            //     authorization: `Bearer ${localStorage.getItem('')}`
-            // }
+        fetch(`http://localhost:5000/myreviews?email=${user?.email}`,{
+            authorization: `Bearer ${localStorage.getItem('getvisa-token')}`
         })
             .then(res => {
-                // if(res.status === 401 || res.status === 403){
-                //     return logOut()
-                // }
                 return res.json()
             })
             .then(data => {
@@ -29,46 +24,28 @@ const MyReviews = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure to delete this review?')
         if (proceed) {
-            fetch(`https://getvisa-server.vercel.app/myreviews/${id}`, {
+            fetch(`http://localhost:5000/myreviews/${id}`,
+            {
                 method: 'DELETE',
-                // headers: {
-                //     authorization: `Bearer ${localStorage.getItem('')}`
-                // }
-            })
+                headers: {
+                    'content-type': 'application/json',
+                }
+                },
+                
+            )
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    if (data.deletedCount > 0) {
+                    if (data.acknowledged > 0) {
                         alert('Deleted Successfully');
-                        const remaining = reviews.filter(odr => odr._id !== id);
+                        const remaining = reviews.filter(rv => rv._id !== id);
                         setreviews(remaining);
                     }
                 })
         }
     }
 
-    const handleStatusUpdate = id => {
-        fetch(`https://getvisa-server.vercel.app/myreviews/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('')}`
-            },
-            body: JSON.stringify({status: 'Approved'})
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.modifiedCount > 0){
-                const remaining = reviews.filter(rv => rv._id !== id);
-                const approved = reviews.find(rv => rv._id === id);
-                approved.status = "Approved";
-
-                const newreview = [approved, ...remaining];
-                setreviews(newreview);
-            }
-        })
-    }
+    
     return (
         <div>
             <Table hoverable={true}>
@@ -96,7 +73,7 @@ const MyReviews = () => {
                         key={review._id}
                         review={review}
                         handleDelete={handleDelete}
-                        handleStatusUpdate={handleStatusUpdate}
+                        
                         ></ReviewRow>)
                     }
                 </Table.Body>

@@ -6,7 +6,8 @@ const Reviews = ({review}) => {
     
     return (
         <div className='flex'>
-                            <img className='h-12 w-12 mr-5 rounded-full' src={img} alt="" />
+                            <img className='h-12 w-12 mr-5 rounded-full'
+                            src={img} alt="" />
                             <div>
                                 <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                     {reviewText}</h5>

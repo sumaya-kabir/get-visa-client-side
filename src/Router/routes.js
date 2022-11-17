@@ -7,6 +7,7 @@ import Contact from "../Pages/Contact/Contact";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import MyReviews from "../Pages/MyReviews/MyReviews";
+import Update from "../Pages/MyReviews/Update";
 import AddReviews from "../Pages/Reviews/AddReviews";
 import ServiceDetails from "../Pages/Services/ServiceDetails";
 import Services from "../Pages/Services/Services";
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('https://getvisa-server.vercel.app/servicesHome')
+                loader: () => fetch('http://localhost:5000/servicesHome')
             },
             {
                 path: '/about',
@@ -30,12 +31,12 @@ export const router = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services></Services>,
-                loader: () => fetch('https://getvisa-server.vercel.app/services')
+                loader: () => fetch('http://localhost:5000/services')
             },
             {
                 path: '/services/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({params}) => fetch(`https://getvisa-server.vercel.app/services/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path: '/blog',
@@ -44,12 +45,17 @@ export const router = createBrowserRouter([
             {
                 path: '/addreviews/:id',
                 element: <PrivateRoutes><AddReviews></AddReviews></PrivateRoutes>,
-                loader: ({params}) => fetch(`https://getvisa-server.vercel.app/services/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
               },
               
             {
                 path: '/myReviews',
                 element:<PrivateRoutes><MyReviews></MyReviews></PrivateRoutes>
+            },
+            {
+                path: '/update/:id',
+                element:<PrivateRoutes><Update></Update></PrivateRoutes>,
+                loader: (({params}) => fetch(`http://localhost:5000/myreviews/${params.id}`))
             },
             {
                 path: '/addservices',

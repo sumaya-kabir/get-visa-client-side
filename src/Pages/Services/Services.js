@@ -1,11 +1,21 @@
-import React from 'react';
+import { Spinner } from 'flowbite-react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 import ServiceCard from './ServiceCard';
 
 const Services = () => {
     const services = useLoaderData();
-    useTitle('Services')
+    useTitle('Services');
+    const {loading} = useContext(AuthContext);
+
+
+    if(loading) {
+        return <div className="text-center">
+        <Spinner size="xl" aria-label="Center-aligned spinner example" />
+      </div>
+    }
     return (
         <div>
             <h2 className='text-center text-5xl mb-12'>Our Services</h2>

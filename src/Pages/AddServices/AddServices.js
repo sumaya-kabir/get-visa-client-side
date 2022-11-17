@@ -26,7 +26,7 @@ const AddServices = () => {
             description
         }
 
-        fetch('https://getvisa-server.vercel.app/newService', {
+        fetch('http://localhost:5000/newService', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

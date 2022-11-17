@@ -1,4 +1,4 @@
-import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
+import { Button, Checkbox, Label, Spinner, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
@@ -11,6 +11,14 @@ const Login = () => {
     const {googleSignIn} = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
+    const {loading} = useContext(AuthContext);
+
+
+    if(loading) {
+        return <div className="text-center">
+        <Spinner size="xl" aria-label="Center-aligned spinner example" />
+      </div>
+    }
 
     const from = location.state?.from?.pathname || "/";
 
@@ -23,8 +31,29 @@ const Login = () => {
         signIn(email, password)
         .then(result => {
             const user = result.user;
-            console.log(user);
-            navigate(from, {replace: true});
+
+            const currentUser = {
+                email: user.email
+            }
+            console.log(currentUser);
+            //get jwt token from the server side
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+
+                    body: JSON.stringify(currentUser)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    // set token to localstorage
+                    localStorage.setItem('getvisa-token', data.token);
+                    navigate(from, {replace: true});
+                })
+            
+            
         })
         .catch(err => console.error(err))
     }
@@ -34,6 +63,7 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            navigate(from, {replace: true});
             // setAuthToken(user)
 
         })
